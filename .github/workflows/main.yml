@@ -34,3 +34,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: s1s5/test
+
+      - name: Run a one-line script
+        run: echo "Hello, tag=${{ steps.meta.outputs.tags }}, labels=${{ steps.meta.outputs.labels }}"
